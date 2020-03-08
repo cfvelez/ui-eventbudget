@@ -1,13 +1,15 @@
-.label {
+label {
   display: inline-flex;
   flex-direction: column;
   font-size: var(--subtitle-size);
 }
-
 .input {
-  background-color: var(--gray-color);
-  padding: var(--m);
-  border-bottom: 5px solid var(--gray-color-900);
+  padding: 8px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid var(--gray-color-900);
+  width: 100%;
+  padding: var(--s);
   font-size: var(--body-size);
   outline: none;
 }
