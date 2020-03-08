@@ -19,3 +19,9 @@ body {
   margin: 1rem;
   border: 0.1rem solid darkgray;
 }
+
+.row {
+  padding: 4px;
+  margin: 2px;
+  width: 100%;
+}

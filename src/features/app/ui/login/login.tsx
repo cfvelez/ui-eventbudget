@@ -16,11 +16,9 @@ export const Login: React.FunctionComponent<{}> = () => {
 
   return (
     <>
-      <main className={cx("wrapper")}>
-        <div className={cx("box")}>
-          <h2>Login</h2>
-        </div>
-        <div className={cx("box")}>
+      <form>
+        <h3>Login</h3>
+        <div className={cx("row")}>
           <TextInput
             label={"Usuario"}
             value={username}
@@ -28,19 +26,27 @@ export const Login: React.FunctionComponent<{}> = () => {
             className={cx("input")}
           ></TextInput>
         </div>
-        <div className={cx("box")}>
+        <div className={cx("row")}>
           <PasswordInput
             label={"Password"}
             value={password}
             onChange={setPassword}
           ></PasswordInput>
         </div>
-        <div className={cx("box")}>
+        <div className={cx("row")}>
           <Button onClick={login} theme="primary">
-            Login
+            Entrar
+          </Button>
+          <Button onClick={login} theme="primary">
+            Entrar con Google
           </Button>
         </div>
-      </main>
+        <div className={cx("row")}>
+          <Button onClick={login} theme="secondary">
+            Registrarse
+          </Button>
+        </div>
+      </form>
     </>
   );
 };

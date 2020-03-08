@@ -2,11 +2,12 @@
   background-color: var(--primary-color);
   border: none;
   color: var(--white-color);
-  padding: 15px 32px;
+  padding: var(--s) var(--m);
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: var(--button-text-size);
+  margin: var(--s) var(--s) var(--none) var(--none);
 }
 
 .primary {
@@ -17,5 +18,16 @@
 
 .primary:hover {
   background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.secondary {
+  background-color: var(--white-color);
+  color: black;
+  border: 2px solid var(--secondary-color);
+}
+
+.secondary:hover {
+  background-color: var(--secondary-color);
   color: var(--white-color);
 }
