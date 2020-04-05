@@ -1,4 +1,5 @@
 export interface Input<Type> {
+  name?: string;
   label: string;
   value: Type;
   required?: boolean;

@@ -1,0 +1,23 @@
+label {
+  display: inline-flex;
+  flex-direction: column;
+  font-size: var(--subtitle-size);
+  margin: var(--s) var(--none) var(--s) var(--none);
+}
+.select {
+  display: block;
+  border: none;
+  border-bottom: 1px solid var(--gray-color-900);
+  width: 100%;
+  padding: var(--s) var(--none) var(--s) var(--s);
+  font-size: var(--body-size);
+  outline: none;
+}
+
+.select:focus {
+  border-bottom-color: var(--primary-color);
+}
+
+.required {
+  border-bottom-color: red;
+}

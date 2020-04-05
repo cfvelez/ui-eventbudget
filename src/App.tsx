@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Login } from "./features/app/ui/login/login";
+import { Settings } from "./features/app/ui/settings/settings";
+//import { Signup } from "./features/app/ui/signup/signup";
+import { Header } from "./features/app/ui/header/header";
+import { routes } from "./routes";
+import { AuthManager } from "./features/app/domain/authManager";
+//import { Signup } from "./features/app/ui/signup/signup";
 //import logo from "./logo.svg";
 import "./App.css";
-import { Page } from "./components/page/page";
+//import { Page } from "./components/page/page";
 
 function App() {
+  const AuthMng = new AuthManager();
+  console.log(AuthMng.isAuthenticated());
+
   return (
-    <Page title="Login">
-      <Login></Login>
-    </Page>
+    <>
+      <Router>
+        <Header></Header>
+        <Switch>
+          <Route path={routes.login} exact>
+            <Login></Login>
+          </Route>
+          <Route path={routes.settings} exact>
+            <Settings></Settings>
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 

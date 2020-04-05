@@ -5,6 +5,7 @@ import { bind } from "../../../utils/bind";
 const cx = bind(styles);
 
 interface Props {
+  name?: string;
   label: string;
   value: string;
   required?: boolean;
@@ -14,20 +15,23 @@ interface Props {
 }
 
 export const BaseInput: React.FunctionComponent<Props> = ({
+  name,
   label,
   value,
   onChange,
   required,
   type,
-  endSlot
+  endSlot,
 }) => {
   const isRequired = required && value === "";
+
   return (
     <label>
       {label}
       <input
+        name={name}
         className={cx("input", { required: isRequired })}
-        onChange={event => onChange(event.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         value={value}
         type={type}
       />

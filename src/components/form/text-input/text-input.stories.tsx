@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { TextInput } from './text-input'
+import React, { useState } from "react";
+import { TextInput } from "./text-input";
 
 export default {
-  title: 'TextInput',
-  component: TextInput
-}
+  title: "TextInput",
+  component: TextInput,
+};
 
 const WithState: React.FC<{ isRequired: boolean }> = ({ isRequired }) => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState("");
   return (
     <>
       <TextInput
@@ -18,8 +18,8 @@ const WithState: React.FC<{ isRequired: boolean }> = ({ isRequired }) => {
       ></TextInput>
       State:{value}
     </>
-  )
-}
+  );
+};
 
-export const base = () => <WithState isRequired={false} />
-export const required = () => <WithState isRequired={true} />
+export const base = () => <WithState isRequired={false} />;
+export const required = () => <WithState isRequired={true} />;
