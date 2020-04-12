@@ -19,10 +19,11 @@ export const Login: React.FunctionComponent<{}> = () => {
     };
 
     const response = await httpClient.post(URL, data);
-    console.log(response.data);
+
     if (response.data.result === "ok") {
       const token = response.data.token;
       localStorage.setItem("token", token);
+      alert("Login correcto!s");
     } else {
       console.log("error de login");
     }

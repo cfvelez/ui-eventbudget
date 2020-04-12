@@ -15,7 +15,7 @@ body {
 }
 
 .box {
-  padding: 2rem;
+  padding: 1rem;
   margin: 1rem;
   border: 0.1rem solid darkgray;
 }
@@ -24,4 +24,9 @@ body {
   padding: 4px;
   margin: 2px;
   width: 100%;
+}
+
+.container {
+  flex-flow: row wrap;
+  justify-content: space-around;
 }

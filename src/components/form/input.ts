@@ -3,6 +3,8 @@ export interface Input<Type> {
   label: string;
   value: Type;
   required?: boolean;
+  min?: string;
+  max?: string;
   onChange(value: Type): void;
   className?: string;
 }

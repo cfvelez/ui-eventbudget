@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./base-input.module.css";
+import styles from "./checkbox-input.module.css";
 import { bind } from "../../../utils/bind";
 
 const cx = bind(styles);
@@ -9,25 +9,23 @@ interface Props {
   label: string;
   value: string;
   required?: boolean;
-  type: "text" | "password" | "date" | "checkbox";
   min?: string;
   max?: string;
   endSlot?: React.ReactNode;
   checked?: boolean;
-  onChange(value: string): void;
+  className?: string;
+  onChange(value: boolean): void;
 }
 
-export const BaseInput: React.FunctionComponent<Props> = ({
+export const Checkbox: React.FunctionComponent<Props> = ({
   name,
   label,
   value,
   onChange,
   required,
-  type,
   endSlot,
-  min,
-  max,
   checked,
+  className,
 }) => {
   const isRequired = required && value === "";
 
@@ -37,11 +35,9 @@ export const BaseInput: React.FunctionComponent<Props> = ({
       <input
         name={name}
         className={cx("input", { required: isRequired })}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => onChange(event.target.checked)}
         value={value}
-        type={type}
-        min={min}
-        max={max}
+        type="checkbox"
         checked={checked}
       />
       {isRequired && <span>Required field</span>}
