@@ -1,5 +1,5 @@
 export const routes = {
   login: "/login",
-  signup: "/signup",
-  settings: "/settings"
+  events: "/events",
+  settings: "/settings",
 };

@@ -23,7 +23,7 @@ export const Login: React.FunctionComponent<{}> = () => {
     if (response.data.result === "ok") {
       const token = response.data.token;
       localStorage.setItem("token", token);
-      alert("Login correcto!s");
+      alert("Login correctos!");
     } else {
       console.log("error de login");
     }

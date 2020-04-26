@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Login } from "./features/app/ui/login/login";
 import { Settings } from "./features/app/ui/settings/settings";
+import { List } from "./features/app/ui/events/list/list";
 //import { Signup } from "./features/app/ui/signup/signup";
 import { Header } from "./features/app/ui/header/header";
 import { routes } from "./routes";
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path={routes.settings} exact>
             <Settings></Settings>
+          </Route>
+          <Route path={routes.events} exact>
+            <List></List>
           </Route>
         </Switch>
       </Router>

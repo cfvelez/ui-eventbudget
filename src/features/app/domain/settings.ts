@@ -1,5 +1,4 @@
 import { Category } from "../../app/domain/category";
-import {} from "../../../infrastructure/http-client";
 
 export class SettingsClass {
   id: string = "";

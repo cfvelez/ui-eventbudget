@@ -15,6 +15,9 @@ export const Header: React.FC = () => {
       <NavLink to={routes.settings} activeClassName={cx("active")}>
         Settings
       </NavLink>
+      <NavLink to={routes.events} activeClassName={cx("active")}>
+        Events
+      </NavLink>
     </header>
   );
 };
