@@ -6,10 +6,14 @@ import { Button } from "../../../../components/button/button";
 import { bind } from "../../../../utils/bind";
 import { httpClient } from "../../../../infrastructure/http-client";
 import { AuthManager } from "../../domain/authManager";
+import { routes } from "../../../../routes/index";
+import { useHistory, useLocation } from "react-router-dom";
 
 export const Login: React.FunctionComponent<{}> = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
+  const AuthMng = new AuthManager();
 
   const login = async () => {
     const URL: string = "/auth/login/";
@@ -22,16 +26,15 @@ export const Login: React.FunctionComponent<{}> = () => {
 
     if (response.data.result === "ok") {
       const token = response.data.token;
-      localStorage.setItem("token", token);
-      alert("Login correctos!");
+      AuthMng.login(token);
+      //history.push(routes.settings);
     } else {
       console.log("error de login");
     }
   };
 
   const checkAuth = () => {
-    const AuthMng = new AuthManager();
-    console.log(AuthMng.isAuthenticated());
+    return AuthMng.isAuthenticated();
   };
 
   const cx = bind(styles);

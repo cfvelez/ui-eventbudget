@@ -48,6 +48,7 @@
     "@storybook/addon-links": "^5.3.14",
     "@storybook/addons": "^5.3.14",
     "@storybook/preset-create-react-app": "^2.0.0",
-    "@storybook/react": "^5.3.14"
+    "@storybook/react": "^5.3.14",
+    "@types/query-string": "^6.3.0"
   }
 }

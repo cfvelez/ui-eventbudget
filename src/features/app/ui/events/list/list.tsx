@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "../../../../../components/card/card";
+import { EventCard } from "../../../../../components/event-card/event-card";
 import { EventInterface } from "../../../domain/event/Event";
 import { getEvents } from "../../../../../infrastructure/events/events";
-import { categoryDto } from "../../../domain/event/CategoryDto";
-import { dateDto } from "../../../domain/event/DateDto";
-import { locationDto } from "../../../domain/event/LocationDto";
 
-export const List: React.FunctionComponent<{}> = () => {
+export const ListEvents: React.FunctionComponent<{}> = () => {
   const eventsSetup: Array<EventInterface> = [];
   const [page, setPage] = useState(0);
   const [events, setEvents] = useState(eventsSetup);
@@ -22,7 +19,7 @@ export const List: React.FunctionComponent<{}> = () => {
 
   return (
     <>
-      <Card items={events}></Card>
+      <EventCard items={events}></EventCard>
     </>
   );
 };

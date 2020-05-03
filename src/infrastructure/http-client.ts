@@ -2,9 +2,9 @@ import axios from "axios";
 import { AuthManager } from "../features/app/domain/authManager";
 const AuthMng = new AuthManager();
 
-const tokenHeader = AuthMng.isAuthenticated
-  ? localStorage.getItem("token")
-  : "";
+const tokenHeader = AuthMng.isAuthenticated() ? AuthMng.getToken() : "";
+
+console.log(AuthMng.isAuthenticated());
 
 const httpClient = axios.create({
   baseURL: "http://localhost:5000",
