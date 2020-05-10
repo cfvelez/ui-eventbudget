@@ -1,6 +1,7 @@
 export interface serverResponse {
   data: {
-    result: string;
-    msg: string;
+    status: string;
+    message: string;
+    data?: any;
   };
 }

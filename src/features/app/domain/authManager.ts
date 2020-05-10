@@ -17,9 +17,10 @@ export class AuthManager {
   }
 
   logout() {
-    console.log("Borrar");
     if (localStorage.getItem("token") !== null) {
       localStorage.removeItem("token");
+      return true;
     }
+    return false;
   }
 }

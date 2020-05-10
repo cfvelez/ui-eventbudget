@@ -16,6 +16,7 @@ export const getSettings = async () => {
   }
 
   const response = await httpClient.get(URL);
+  console.log(response.data);
   const settings = response.data as SettingsDto;
   const dataSettings = new SettingsClass(
     settings._id,

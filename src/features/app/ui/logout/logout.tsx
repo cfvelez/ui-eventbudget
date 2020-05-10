@@ -1,24 +1,24 @@
 /* eslint-disable no-restricted-globals */
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { AuthManager } from "../../domain/authManager";
 import { routes } from "../../../../routes/index";
 import { useHistory } from "react-router-dom";
-import { Button } from "../../../../components/button/button";
+import { AppContext } from "../../../../app-context";
 
-export const LogOut: React.FunctionComponent<{}> = () => {
+export const Logout: React.FunctionComponent<{}> = () => {
   const AuthMng = new AuthManager();
+  const { status, updateApp } = useContext(AppContext);
   const history = useHistory();
 
   const destroyToken = () => {
+    updateApp({ ...status, user: "0" });
     AuthMng.logout();
-    //history.push(routes.login);
+    history.push(routes.login);
   };
 
-  return (
-    <>
-      <Button onClick={destroyToken} theme="secondary">
-        Salir
-      </Button>
-    </>
-  );
+  useEffect(() => {
+    destroyToken();
+  }, []);
+
+  return <></>;
 };

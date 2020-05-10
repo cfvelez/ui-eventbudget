@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./settings.module.css";
 import { TextInput } from "../../../../components/form/text-input/text-input";
 import { SelectInput } from "../../../../components/form/select/base-select";
@@ -15,6 +15,7 @@ import { DateInput } from "../../../../components/form/date-input/date-input";
 import { Checkbox } from "../../../../components/form/checkbox-input/checkbox-input";
 import { Category } from "../../domain/category";
 import { serverResponse } from "../../domain/serverResponse";
+import { AppContext } from "../../../../app-context";
 
 export const Settings: React.FunctionComponent<{}> = () => {
   const item: City[] = [];
@@ -33,6 +34,7 @@ export const Settings: React.FunctionComponent<{}> = () => {
   const [enddate, setEndDate] = useState("");
   const [settings, setSettings] = useState(defaultSettings);
   const [categories, setCategories] = useState(category);
+  const { status, updateApp } = useContext(AppContext);
 
   const cx = bind(styles);
 
@@ -96,8 +98,8 @@ export const Settings: React.FunctionComponent<{}> = () => {
     setSettings(settings);
     const response: serverResponse = await postSettings(settings);
 
-    if (response.data.result === "ok") alert(response.data.msg);
-    else alert(response.data.msg);
+    if (response.data.status === "ok" || response.data.status === "error")
+      updateApp({ ...status, msg: response.data.message });
   };
 
   useEffect(() => {
@@ -138,7 +140,6 @@ export const Settings: React.FunctionComponent<{}> = () => {
             label={"Ciudad"}
             options={cities}
             onChange={(e) => {
-              console.log(e);
               setCity(e);
             }}
           ></SelectInput>
@@ -150,7 +151,6 @@ export const Settings: React.FunctionComponent<{}> = () => {
             value={startdate}
             onChange={(value) => {
               setStartDate(value);
-              console.log(startdate);
             }}
             className={cx("input")}
           ></DateInput>
@@ -161,7 +161,6 @@ export const Settings: React.FunctionComponent<{}> = () => {
             value={enddate}
             onChange={(value) => {
               setEndDate(value);
-              console.log(enddate);
             }}
             className={cx("input")}
           ></DateInput>

@@ -1,35 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./login.module.css";
 import { TextInput } from "../../../../components/form/text-input/text-input";
 import { PasswordInput } from "../../../../components/form/password-input/password-input";
 import { Button } from "../../../../components/button/button";
 import { bind } from "../../../../utils/bind";
-import { httpClient } from "../../../../infrastructure/http-client";
 import { AuthManager } from "../../domain/authManager";
+import { AppContext } from "../../../../app-context";
+import { useHistory, NavLink } from "react-router-dom";
 import { routes } from "../../../../routes/index";
-import { useHistory, useLocation } from "react-router-dom";
+import { doLogin } from "./../../../../infrastructure/auth/auth";
+import { serverResponse } from "../../domain/serverResponse";
 
 export const Login: React.FunctionComponent<{}> = () => {
+  const { status, updateApp } = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+
   const AuthMng = new AuthManager();
 
+  const handleRequest = async () => {
+    const response: serverResponse = await doLogin(username, password);
+    return response;
+  };
+
   const login = async () => {
-    const URL: string = "/auth/login/";
-    var data = {
-      email: username,
-      password: password,
-    };
+    AuthMng.logout();
 
-    const response = await httpClient.post(URL, data);
+    updateApp({ ...status, app: "1" });
 
-    if (response.data.result === "ok") {
-      const token = response.data.token;
+    const response: serverResponse = await handleRequest();
+
+    if (response.data.status === "ok") {
+      const token = response.data.data;
+      console.log(token);
       AuthMng.login(token);
-      //history.push(routes.settings);
+      updateApp({ user: "1", app: "0", msg: "Login exitoso" });
     } else {
-      console.log("error de login");
+      updateApp({ user: "0", app: "0", msg: "Error login" });
     }
   };
 
@@ -67,9 +75,9 @@ export const Login: React.FunctionComponent<{}> = () => {
         </Button>
       </div>
       <div className={cx("row")}>
-        <Button onClick={login} theme="secondary">
-          Registrarse
-        </Button>
+        <NavLink to={routes.sign_up} activeClassName={cx("active")}>
+          <Button theme="secondary">Registrarse</Button>
+        </NavLink>
       </div>
     </>
   );
