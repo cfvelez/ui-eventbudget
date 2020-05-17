@@ -8,6 +8,7 @@ import { bind } from "../../../../utils/bind";
 import { AppContext } from "../../../../app-context";
 import { serverResponse } from "../../domain/serverResponse";
 import * as EmailValidator from "email-validator";
+import { routes } from "../../../../routes/index";
 
 export const Signup: React.FunctionComponent<{}> = () => {
   const [email, setEmail] = useState("");
@@ -86,6 +87,10 @@ export const Signup: React.FunctionComponent<{}> = () => {
     }
   };
 
+  const cancel = () => {
+    window.location.href = `http://localhost:3000${routes.login}`;
+  };
+
   const cx = bind(styles);
 
   return (
@@ -136,7 +141,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
         <Button onClick={signup} theme="primary">
           Aceptar
         </Button>
-        <Button onClick={signup} theme="primary">
+        <Button onClick={cancel} theme="primary">
           Cancelar
         </Button>
       </div>

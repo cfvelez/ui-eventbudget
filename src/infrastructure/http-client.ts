@@ -1,10 +1,9 @@
 import axios from "axios";
 import { AuthManager } from "../features/app/domain/authManager";
 const AuthMng = new AuthManager();
-
+console.log("5.0", AuthMng.isAuthenticated());
 const tokenHeader = AuthMng.isAuthenticated() ? AuthMng.getToken() : "";
-
-console.log(AuthMng.isAuthenticated());
+console.log("token 5:", tokenHeader);
 
 const httpClient = axios.create({
   baseURL: "http://localhost:5000",
@@ -12,6 +11,8 @@ const httpClient = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
     "Control-Allow-Origin": "*",
+    "Access-Control-Allow-Header": "*",
+    "Access-Control-Allow-Origin": "*",
     Authorization: `Bearer ${tokenHeader}`,
   },
 });

@@ -25,13 +25,17 @@ export class SettingsClass {
     _endDate: string,
     _categories: Array<string>
   ) {
-    this.id = _id;
-    this.budget = _budget;
-    this.numTickets = _numTickets;
-    this.location = _location;
-    this.startDate = _startDate;
-    this.endDate = _endDate;
-    this.categories = _categories;
+    this.id = _id !== null && _id !== undefined ? _id : "";
+    this.budget = _budget !== null && _budget !== undefined ? _budget : 0;
+    this.numTickets =
+      _numTickets !== null && _numTickets !== undefined ? _numTickets : 0;
+    this.location =
+      _location !== null && _location !== undefined ? _location : "";
+    this.startDate =
+      _startDate !== null && _startDate !== undefined ? _startDate : "";
+    this.endDate = _endDate !== null && _endDate !== undefined ? _endDate : "";
+    this.categories =
+      _categories !== null && _categories !== undefined ? _categories : [];
   }
 
   getCategories(): Category {

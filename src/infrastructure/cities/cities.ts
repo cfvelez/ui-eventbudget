@@ -13,16 +13,13 @@ export const getCities = async () => {
   }
 
   const response = await httpClient.get(URL);
-  const cities = response.data.map((item: CityDto) => {
-    return { id: item._id, name: item.name } as City;
-  });
+  let cities = [];
 
+  if (response.data.status === "ok") {
+    const list = response.data.data;
+    cities = list.map((item: CityDto) => {
+      return { id: item._id, name: item.name } as City;
+    });
+  }
   return cities;
-
-  /*if (response.data.result === "ok") {
-    const token = response.data.token;
-    localStorage.setItem("token", token);
-  } else {
-    console.log("error de login");
-  }*/
 };

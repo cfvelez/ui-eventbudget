@@ -35,7 +35,6 @@ export const Settings: React.FunctionComponent<{}> = () => {
   const [settings, setSettings] = useState(defaultSettings);
   const [categories, setCategories] = useState(category);
   const { status, updateApp } = useContext(AppContext);
-
   const cx = bind(styles);
 
   const onHandleBudgetChange = (value: string) => {
@@ -96,6 +95,7 @@ export const Settings: React.FunctionComponent<{}> = () => {
       categories
     );
     setSettings(settings);
+    updateApp({ ...status, app: "1" });
     const response: serverResponse = await postSettings(settings);
 
     if (response.data.status === "ok" || response.data.status === "error")

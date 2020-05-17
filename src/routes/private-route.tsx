@@ -6,6 +6,7 @@ import { AppContext } from "../app-context";
 export const PrivateRoute: React.FC = ({ children, ...rest }) => {
   const authManager = new AuthManager();
   const { status } = useContext(AppContext);
+
   return (
     <Route
       {...rest}

@@ -1,23 +1,25 @@
 import { httpClient } from "../http-client";
 import { SettingsClass } from "../../features/app/domain/settings";
 import { serverResponse } from "../../features/app/domain/serverResponse";
-
+import { SettingsDto } from "./settingsDto";
 export const getSettings = async () => {
   const URL: string = "/user/settings/";
 
-  interface SettingsDto {
-    categories: string[];
-    _id: string;
-    budget: number;
-    numTickets: number;
-    location: string;
-    startDate: string;
-    endDate: string;
+  const response = await httpClient.get(URL);
+  let settings: SettingsDto = {
+    _id: "",
+    budget: 0,
+    numTickets: 0,
+    location: "",
+    startDate: "",
+    endDate: "",
+    categories: [],
+  };
+
+  if (response.data.data) {
+    settings = response.data.data as SettingsDto;
   }
 
-  const response = await httpClient.get(URL);
-  console.log(response.data);
-  const settings = response.data as SettingsDto;
   const dataSettings = new SettingsClass(
     settings._id,
     settings.budget,
@@ -43,7 +45,11 @@ export const postSettings = async (newSettings: SettingsClass) => {
     categories: newSettings.categories,
   };
 
-  const response: serverResponse = await httpClient.post(URL, data);
+  let response: serverResponse = {
+    data: { status: "error", message: "", data: null },
+  };
+
+  response = Object.assign({}, await httpClient.post(URL, data));
 
   return response;
 };

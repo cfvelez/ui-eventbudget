@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Signup } from "./features/app/ui/signup/signup";
 import { Logout } from "./features/app/ui/logout/logout";
 import { Login } from "./features/app/ui/login/login";
+
 import { Loader } from "./features/app/ui/loader/loader";
 import { Settings } from "./features/app/ui/settings/settings";
 import { ListEvents } from "./features/app/ui/events/list/list";
@@ -42,21 +43,32 @@ function App() {
           <Route path={routes.login} exact>
             <Login></Login>
           </Route>
+          <Route path={`${routes.login}/:gtoken`}>
+            <Login></Login>
+          </Route>
           <Route path={routes.sign_up} exact>
             <Signup></Signup>
           </Route>
-          <PrivateRoute>
-            <Settings></Settings>
-          </PrivateRoute>
-          <PrivateRoute>
-            <ListEvents></ListEvents>
-          </PrivateRoute>
-          <PrivateRoute>
-            <Logout></Logout>
-          </PrivateRoute>
-          <PrivateRoute>
-            <ListFavorites></ListFavorites>
-          </PrivateRoute>
+          <Route path={routes.settings} exact>
+            <PrivateRoute>
+              <Settings></Settings>
+            </PrivateRoute>
+          </Route>
+          <Route path={routes.events} exact>
+            <PrivateRoute>
+              <ListEvents></ListEvents>
+            </PrivateRoute>
+          </Route>
+          <Route path={routes.favorites} exact>
+            <PrivateRoute>
+              <ListFavorites></ListFavorites>
+            </PrivateRoute>
+          </Route>
+          <Route path={routes.logout} exact>
+            <PrivateRoute>
+              <Logout></Logout>
+            </PrivateRoute>
+          </Route>
         </Switch>
       </Router>
       <Loader></Loader>

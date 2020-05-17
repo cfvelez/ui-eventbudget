@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import { Status } from "./features/app/domain/status";
-import { binary } from "./features/app/domain/binaryType";
 
 export const AppContext = createContext<{
   status: Status;
