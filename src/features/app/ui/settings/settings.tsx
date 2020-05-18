@@ -59,6 +59,7 @@ export const Settings: React.FunctionComponent<{}> = () => {
 
   const handleSettingsPromise = async () => {
     const settings: SettingsClass = await getSettings();
+
     setSettings(settings);
     setBudget(String(settings.budget));
     setTickets(String(settings.numTickets));
