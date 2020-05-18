@@ -1,11 +1,12 @@
 import { httpClient } from "../http-client";
+import { httpClientFetch } from "../http-client-fetch";
 import { SettingsClass } from "../../features/app/domain/settings";
 import { serverResponse } from "../../features/app/domain/serverResponse";
 import { SettingsDto } from "./settingsDto";
 export const getSettings = async () => {
   const URL: string = "/user/settings/";
-
-  const response = await httpClient.get(URL);
+  const httpReactClient = new httpClientFetch("GET", URL);
+  const response = await httpReactClient.request();
   let settings: SettingsDto = {
     _id: "",
     budget: 0,
