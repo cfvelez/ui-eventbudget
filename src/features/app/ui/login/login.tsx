@@ -31,11 +31,11 @@ export const Login: React.FunctionComponent<{}> = () => {
   };
 
   const google = () => {
-    window.location.href = "http://localhost:5000/auth/google/";
+    window.location.href = "/auth/google/";
   };
 
   const sigUp = () => {
-    window.location.href = `http://localhost:3000${routes.sign_up}`;
+    window.location.href = routes.sign_up;
   };
 
   const login = async () => {

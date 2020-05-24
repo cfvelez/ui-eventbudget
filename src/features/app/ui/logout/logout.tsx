@@ -20,5 +20,9 @@ export const Logout: React.FunctionComponent<{}> = () => {
     destroyToken();
   }, []);
 
-  return <></>;
+  return (
+    <>
+      <div></div>
+    </>
+  );
 };

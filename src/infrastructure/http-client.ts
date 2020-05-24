@@ -8,11 +8,7 @@ console.log("token 5:", tokenHeader);
 const httpClient = axios.create({
   baseURL: "http://localhost:5000",
   headers: {
-    Accept: "application/json",
     "Content-Type": "application/json",
-    "Control-Allow-Origin": "*",
-    "Access-Control-Allow-Header": "*",
-    "Access-Control-Allow-Origin": "*",
     Authorization: `Bearer ${tokenHeader}`,
   },
 });
