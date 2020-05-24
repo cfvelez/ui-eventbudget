@@ -88,7 +88,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
   };
 
   const cancel = () => {
-    window.location.href = `http://localhost:3000${routes.login}`;
+    window.location.href = `${routes.login}`;
   };
 
   const cx = bind(styles);

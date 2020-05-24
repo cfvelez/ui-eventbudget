@@ -8,6 +8,7 @@ import { AuthManager } from "../../domain/authManager";
 import { AppContext } from "../../../../app-context";
 import { useHistory } from "react-router-dom";
 import { routes } from "../../../../routes/index";
+import { environment } from "../../../../infrastructure/env";
 import {
   doLogin,
   validateAccess,
@@ -31,7 +32,7 @@ export const Login: React.FunctionComponent<{}> = () => {
   };
 
   const google = () => {
-    window.location.href = "/auth/google/";
+    window.location.href = `${environment}/auth/google/`;
   };
 
   const sigUp = () => {
