@@ -1,5 +1,6 @@
 import { httpClient } from "../http-client";
 import { serverResponse } from "../../features/app/domain/serverResponse";
+import { environment } from "../env";
 
 let response: serverResponse = {
   data: {
@@ -46,7 +47,7 @@ export const validateAccess = async (token: string) => {
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("Authorization", "Bearer " + token);
 
-  const info = await fetch("http://localhost:5000" + URL, {
+  const info = await fetch(environment + URL, {
     method: "POST",
     headers: myHeaders,
   });

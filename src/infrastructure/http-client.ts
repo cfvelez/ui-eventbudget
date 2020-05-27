@@ -1,12 +1,13 @@
 import axios from "axios";
 import { AuthManager } from "../features/app/domain/authManager";
+import { environment } from "../infrastructure/env";
 const AuthMng = new AuthManager();
 console.log("5.0", AuthMng.isAuthenticated());
-const tokenHeader = AuthMng.isAuthenticated() ? AuthMng.getToken() : "";
+let tokenHeader = AuthMng.isAuthenticated() ? AuthMng.getToken() : "";
 console.log("token 5:", tokenHeader);
-
+console.log(environment);
 const httpClient = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: environment,
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${tokenHeader}`,

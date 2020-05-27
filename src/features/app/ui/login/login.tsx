@@ -48,9 +48,8 @@ export const Login: React.FunctionComponent<{}> = () => {
     if (response.data.status === "ok") {
       const token = response.data.data;
       AuthMng.login(token);
-
       updateApp({ user: "1", app: "0", msg: "Login exitoso" });
-      history.replace(routes.settings);
+      //history.replace(routes.settings);
     } else {
       updateApp({ user: "0", app: "0", msg: "Error login" });
     }
