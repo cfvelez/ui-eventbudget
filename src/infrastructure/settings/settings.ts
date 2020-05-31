@@ -1,12 +1,12 @@
 import { httpClient } from "../http-client";
-import { httpClientFetch } from "../http-client-fetch";
 import { SettingsClass } from "../../features/app/domain/settings";
 import { serverResponse } from "../../features/app/domain/serverResponse";
 import { SettingsDto } from "./settingsDto";
+import { AuthManager } from "../../features/app/domain/authManager";
 
 export const getSettings = async () => {
   const URL: string = "/user/settings/";
-
+  setHeaders();
   let response = Object.assign(
     {},
     (await httpClient.get(URL)) as serverResponse
@@ -54,8 +54,15 @@ export const postSettings = async (newSettings: SettingsClass) => {
   let response: serverResponse = {
     data: { status: "error", message: "", data: null },
   };
-
+  setHeaders();
   response = Object.assign({}, await httpClient.post(URL, data));
 
   return response;
 };
+
+function setHeaders() {
+  const AuthMng = new AuthManager();
+  httpClient.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${AuthMng.getToken()}`;
+}

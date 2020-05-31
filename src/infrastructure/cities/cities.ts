@@ -1,5 +1,6 @@
 import { httpClient } from "../http-client";
 import { City } from "../../features/app/domain/city";
+import { AuthManager } from "../../features/app/domain/authManager";
 
 export const getCities = async () => {
   const URL: string = "/cities/get/";
@@ -11,7 +12,7 @@ export const getCities = async () => {
     name: String;
     subcountry: String;
   }
-
+  setHeaders();
   const response = await httpClient.get(URL);
   let cities = [];
 
@@ -23,3 +24,10 @@ export const getCities = async () => {
   }
   return cities;
 };
+
+function setHeaders() {
+  const AuthMng = new AuthManager();
+  httpClient.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${AuthMng.getToken()}`;
+}

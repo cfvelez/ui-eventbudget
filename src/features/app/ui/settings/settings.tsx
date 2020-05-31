@@ -104,11 +104,10 @@ export const Settings: React.FunctionComponent<{}> = () => {
   };
 
   useEffect(() => {
-    handleCitiesPromise();
-  }, []);
-
-  useEffect(() => {
-    handleSettingsPromise();
+    if (status.user === "1") {
+      handleCitiesPromise();
+      handleSettingsPromise();
+    }
   }, []);
 
   return (

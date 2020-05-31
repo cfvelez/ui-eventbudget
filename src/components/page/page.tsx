@@ -1,21 +1,27 @@
 import React from "react";
 import { bind } from "../../utils/bind";
-import styles from "./page.module.css";
-
-const cx = bind(styles);
-
+import styles from "../pagination/pagination.module.css";
 interface Props {
-  title: String;
+  number: number;
+  isActive: boolean;
+  Click(page: number): void;
 }
-
-export const Page: React.FunctionComponent<Props> = ({ title, children }) => {
+const cx = bind(styles);
+export const Page: React.FunctionComponent<Props> = ({
+  number,
+  isActive,
+  Click,
+}) => {
   return (
     <>
-      <main className={cx("wrapper")}>
-        <div className={cx("box")}>Header</div>
-        <div className={cx("box span-column-2")}>{children}</div>
-        <div className={cx("box")}>Footer</div>
-      </main>
+      <a
+        id={number.toString()}
+        key={number}
+        onClick={() => Click(number)}
+        className={`${isActive ? "active" : "none"}`}
+      >
+        {number}
+      </a>
     </>
   );
 };

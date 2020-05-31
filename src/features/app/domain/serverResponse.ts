@@ -5,3 +5,9 @@ export interface serverResponse {
     data?: any;
   };
 }
+
+export interface loginResponse {
+  status: string;
+  message: string;
+  data?: any;
+}

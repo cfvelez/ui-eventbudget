@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { AuthManager } from "../features/app/domain/authManager";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { AppContext } from "../app-context";
+import { Login } from "../features/app/ui/login/login";
 
 export const PrivateRoute: React.FC = ({ children, ...rest }) => {
   const authManager = new AuthManager();
@@ -14,12 +15,7 @@ export const PrivateRoute: React.FC = ({ children, ...rest }) => {
         authManager.isAuthenticated() && status.user === "1" ? (
           children
         ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
+          <Login />
         )
       }
     />

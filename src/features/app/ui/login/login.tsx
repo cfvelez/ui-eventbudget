@@ -13,7 +13,7 @@ import {
   doLogin,
   validateAccess,
 } from "./../../../../infrastructure/auth/auth";
-import { serverResponse } from "../../domain/serverResponse";
+import { loginResponse } from "../../domain/serverResponse";
 import { useParams } from "react-router-dom";
 
 export const Login: React.FunctionComponent<{}> = () => {
@@ -27,7 +27,7 @@ export const Login: React.FunctionComponent<{}> = () => {
   const AuthMng = new AuthManager();
 
   const handleRequest = async () => {
-    const response: serverResponse = await doLogin(username, password);
+    const response: loginResponse = await doLogin(username, password);
     return response;
   };
 
@@ -43,13 +43,17 @@ export const Login: React.FunctionComponent<{}> = () => {
     AuthMng.logout();
     updateApp({ ...status, app: "1" });
 
-    const response: serverResponse = await handleRequest();
+    let response = (await handleRequest()) as loginResponse;
 
-    if (response.data.status === "ok") {
-      const token = response.data.data;
+    if (response.status === "ok") {
+      const token = response.data;
+
       AuthMng.login(token);
-      updateApp({ user: "1", app: "0", msg: "Login exitoso" });
-      //history.replace(routes.settings);
+
+      if (AuthMng.isAuthenticated()) {
+        updateApp({ user: "1", app: "0", msg: "Login exitoso" });
+      }
+      history.replace(routes.settings);
     } else {
       updateApp({ user: "0", app: "0", msg: "Error login" });
     }
@@ -72,6 +76,7 @@ export const Login: React.FunctionComponent<{}> = () => {
 
   useEffect(() => {
     const receivedToken = gtoken !== undefined && gtoken !== null ? gtoken : "";
+    AuthMng.logout();
     if (receivedToken !== "") {
       validateToken(receivedToken);
     }

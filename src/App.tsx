@@ -49,9 +49,11 @@ function App() {
           <Route path={routes.sign_up} exact>
             <Signup></Signup>
           </Route>
-          <PrivateRoute>
-            <Settings></Settings>
-          </PrivateRoute>
+          <Route path={routes.settings} exact>
+            <PrivateRoute>
+              <Settings></Settings>
+            </PrivateRoute>
+          </Route>
           <Route path={routes.events} exact>
             <PrivateRoute>
               <ListEvents></ListEvents>

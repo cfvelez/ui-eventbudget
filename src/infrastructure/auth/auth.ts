@@ -1,13 +1,14 @@
 import { httpClient } from "../http-client";
-import { serverResponse } from "../../features/app/domain/serverResponse";
+import { loginResponse } from "../../features/app/domain/serverResponse";
 import { environment } from "../env";
+import { AuthManager } from "../../features/app/domain/authManager";
 
-let response: serverResponse = {
-  data: {
-    status: "error",
-    message: "No response",
-    data: null,
-  },
+const AuthMng = new AuthManager();
+
+let data: loginResponse = {
+  status: "error",
+  message: "No response",
+  data: "",
 };
 
 export const doRegister = async (
@@ -32,12 +33,25 @@ export const doRegister = async (
 
 export const doLogin = async (f_email: string, f_password: string) => {
   const URL: string = "/auth/login/";
-  var data = {
+  var credentials = {
     email: f_email,
     password: f_password,
   };
-  response = Object.assign({}, await httpClient.post(URL, data));
-  return response;
+
+  const myHeaders = new Headers();
+
+  myHeaders.append("Content-Type", "application/json");
+  let token = AuthMng.isAuthenticated() ? AuthMng.getToken() : "";
+  myHeaders.append("Authorization", "Bearer " + token);
+
+  const info = await fetch(environment + URL, {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify(credentials),
+  });
+
+  data = Object.assign({}, await info.json());
+  return data;
 };
 
 export const validateAccess = async (token: string) => {
