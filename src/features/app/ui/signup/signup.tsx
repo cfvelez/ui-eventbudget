@@ -17,6 +17,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
   const [name, setName] = useState("");
   const [lastname, setLastName] = useState("");
   const { status, updateApp } = useContext(AppContext);
+  const [success, setSuccess] = useState(false);
 
   const formValidate = () => {
     if (EmailValidator.validate(email)) {
@@ -28,7 +29,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
             } else {
               updateApp({
                 ...status,
-                msg: "La contraseña y su confirmación no coinciden.",
+                msg: "w|La contraseña y su confirmación no coinciden.",
               });
 
               return false;
@@ -36,7 +37,8 @@ export const Signup: React.FunctionComponent<{}> = () => {
           } else {
             updateApp({
               ...status,
-              msg: "Debe ingresar una contraseña de por lo menos 6 carácteres.",
+              msg:
+                "w|Debe ingresar una contraseña de por lo menos 6 carácteres.",
             });
 
             return false;
@@ -44,7 +46,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
         } else {
           updateApp({
             ...status,
-            msg: "Debe ingresar el apellido",
+            msg: "w|Debe ingresar el apellido",
           });
 
           return false;
@@ -52,7 +54,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
       } else {
         updateApp({
           ...status,
-          msg: "Debe ingresar el nombre",
+          msg: "w|Debe ingresar el nombre",
         });
 
         return false;
@@ -60,7 +62,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
     } else {
       updateApp({
         ...status,
-        msg: "Ingrese un correo válido.",
+        msg: "s|Ingrese un correo válido.",
       });
 
       return false;
@@ -82,7 +84,8 @@ export const Signup: React.FunctionComponent<{}> = () => {
       updateApp({ ...status, app: "1" });
       let response: serverResponse = await handleRequest();
       if (response.data.status === "ok" || response.data.status === "error") {
-        updateApp({ ...status, app: "0", msg: response.data.message });
+        updateApp({ ...status, app: "0", msg: "s|" + response.data.message });
+        setSuccess(true);
       }
     }
   };
@@ -95,55 +98,67 @@ export const Signup: React.FunctionComponent<{}> = () => {
 
   return (
     <>
-      <h3>Sign Up</h3>
-      <div className={cx("row")}>
-        <TextInput
-          name={"email"}
-          label={"Email"}
-          value={email}
-          onChange={setEmail}
-          className={cx("input")}
-        ></TextInput>
+      <div className={success ? cx("not-visible ") : cx("")}>
+        <div className={cx("row")}>
+          <h3>Registro</h3>
+        </div>
+
+        <div className={cx("row")}>
+          <TextInput
+            name={"email"}
+            label={"Email"}
+            value={email}
+            onChange={setEmail}
+            className={cx("input")}
+          ></TextInput>
+        </div>
+        <div className={cx("row")}>
+          <TextInput
+            name={"name"}
+            label={"Nombre:"}
+            value={name}
+            onChange={setName}
+            className={cx("input")}
+          ></TextInput>
+        </div>
+        <div className={cx("row")}>
+          <TextInput
+            name={"lastname"}
+            label={"Apellidos:"}
+            value={lastname}
+            onChange={setLastName}
+            className={cx("input")}
+          ></TextInput>
+        </div>
+        <div className={cx("row")}>
+          <PasswordInput
+            label={"Clave:"}
+            value={password}
+            onChange={setPassword}
+          ></PasswordInput>
+        </div>
+        <div className={cx("row")}>
+          <PasswordInput
+            label={"Confirma Clave:"}
+            value={confirmPassword}
+            onChange={setConfirmPassword}
+          ></PasswordInput>
+        </div>
+        <div className={cx("row")}>
+          <Button onClick={cancel} theme="secondary">
+            Cancelar
+          </Button>
+          <Button onClick={signup} theme="primary">
+            Aceptar
+          </Button>
+        </div>
       </div>
       <div className={cx("row")}>
-        <TextInput
-          name={"name"}
-          label={"name"}
-          value={name}
-          onChange={setName}
-          className={cx("input")}
-        ></TextInput>
-      </div>
-      <div className={cx("row")}>
-        <TextInput
-          name={"lastname"}
-          label={"lastname"}
-          value={lastname}
-          onChange={setLastName}
-          className={cx("input")}
-        ></TextInput>
-      </div>
-      <div className={cx("row")}>
-        <PasswordInput
-          label={"Password"}
-          value={password}
-          onChange={setPassword}
-        ></PasswordInput>
-      </div>
-      <div className={cx("row")}>
-        <PasswordInput
-          label={"Password"}
-          value={confirmPassword}
-          onChange={setConfirmPassword}
-        ></PasswordInput>
-      </div>
-      <div className={cx("row")}>
-        <Button onClick={signup} theme="primary">
-          Aceptar
-        </Button>
-        <Button onClick={cancel} theme="primary">
-          Cancelar
-        </Button>
+        {success && (
+          <Button onClick={cancel} theme="primary">
+            Acceder
+          </Button>
+        )}
       </div>
     </>
   );

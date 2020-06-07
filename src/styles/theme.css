@@ -3,9 +3,14 @@
   --primary-color: #008cba;
   --on-primary-color: indianred;
   --white-color: white;
-
-  --secondary-color: #4caf50;
+  --error-color: #f44336;
+  --warning-color: #ff9800;
+  --success-color: #4caf50;
   --on-secondary-color: white;
+  --nav-primary-color: #333;
+  --nav-hover-color: #111;
+  --nav-active-color: #008cba;
+  --nav-exit-color: #f44336;
 
   --gray-color: hsl(0, 0%, 90%);
   --gray-color-900: hsl(0, 0%, 50%);

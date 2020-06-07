@@ -1,0 +1,41 @@
+.nav-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--nav-primary-color);
+}
+
+.nav-li {
+  float: left;
+}
+
+.nav-li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav-li-last a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  float: right;
+}
+
+.nav-li .active {
+  background-color: var(--nav-active-color);
+}
+
+/* Change the link color to #111 (black) on hover */
+.nav-li a:hover {
+  background-color: var(--nav-hover-color);
+}
+
+.nav-li-last a:hover {
+  background-color: var(--nav-exit-color);
+}

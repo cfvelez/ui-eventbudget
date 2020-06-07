@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 2rem;
   font-family: var(--body-font);
   font-size: var(--body-size);
   -webkit-font-smoothing: antialiased;
@@ -9,4 +9,32 @@ body {
 .my-button {
   --button-background: pink;
   --button-text: white;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  width: 40%;
+}
+
+.box {
+  padding: 1rem;
+  margin: 0.2rem;
+  border: 0.1rem solid darkgray;
+}
+
+.row {
+  padding: 4px;
+  margin: 2px;
+  width: 100%;
+}
+
+.container {
+  flex-flow: row wrap;
+  justify-content: space-around;
 }

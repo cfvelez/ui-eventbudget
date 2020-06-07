@@ -11,7 +11,7 @@ export const Logout: React.FunctionComponent<{}> = () => {
   const history = useHistory();
 
   const destroyToken = () => {
-    updateApp({ ...status, user: "0" });
+    updateApp({ ...status, user: "0", msg: "" });
     AuthMng.logout();
     history.push(routes.login);
   };

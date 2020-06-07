@@ -4,5 +4,6 @@ export const routes = {
   logout: "/logout",
   events: "/events",
   favorites: "/favorites",
+  security: "/security",
   settings: "/settings",
 };

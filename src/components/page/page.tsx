@@ -18,9 +18,9 @@ export const Page: React.FunctionComponent<Props> = ({
         id={number.toString()}
         key={number}
         onClick={() => Click(number)}
-        className={`${isActive ? "active" : "none"}`}
+        className={`${isActive ? cx("active") : cx("none")}`}
       >
-        {number}
+        {number + 1}
       </a>
     </>
   );

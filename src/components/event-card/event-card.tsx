@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+import React, { useContext } from "react";
 import { bind } from "../../utils/bind";
 import styles from "./event-card.module.css";
 import { EventInterface } from "../../features/app/domain/event/Event";
 import { addEvent } from "../../infrastructure/events/events";
 import { Button } from "../button/button";
+import { AppContext } from "../../app-context";
 
 const cx = bind(styles);
 
@@ -14,14 +15,20 @@ interface Props {
 }
 
 export const EventCard: React.FunctionComponent<Props> = ({ items }) => {
-  const handleAddEventBtn = async (id: string) => {
+  const { status, updateApp } = useContext(AppContext);
+  const handleAddEventBtn = async (id: string, event: string) => {
+    updateApp({ ...status, app: "1" });
     const data = await addEvent(id);
     if (data.status === "ok") {
       let div = document.querySelector(`div#${id}`) as HTMLDivElement;
       div.hidden = true;
+      updateApp({
+        ...status,
+        app: "0",
+        msg: "s| El evento " + event + " fue adicionado a tus favoritos.",
+      });
     } else {
-      //Pendiente
-      alert(data.message + "(Pendiente UI)");
+      updateApp({ ...status, app: "0", msg: "e|" + data.message });
     }
   };
 
@@ -30,7 +37,9 @@ export const EventCard: React.FunctionComponent<Props> = ({ items }) => {
       return (
         <div key={event.id} id={event.id} className={cx("card")}>
           {event.id}-{event.name}
-          <Button onClick={() => handleAddEventBtn(event.id)}>Agregar</Button>
+          <Button onClick={() => handleAddEventBtn(event.id, event.name)}>
+            Agregar
+          </Button>
         </div>
       );
     });

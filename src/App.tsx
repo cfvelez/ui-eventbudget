@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Signup } from "./features/app/ui/signup/signup";
 import { Logout } from "./features/app/ui/logout/logout";
 import { Login } from "./features/app/ui/login/login";
-
-import { Loader } from "./features/app/ui/loader/loader";
+import { Alert } from "./components/alert/alert";
+import { Loader } from "./components/loader/loader";
 import { Settings } from "./features/app/ui/settings/settings";
 import { ListEvents } from "./features/app/ui/events/list/list";
 import { ListFavorites } from "./features/app/ui/favorites/list";
-
-import { Header } from "./features/app/ui/header/header";
+import { Header } from "./components/header/header";
 import { routes } from "./routes/index";
 import { PrivateRoute } from "./routes/private-route";
 import { Status } from "./features/app/domain/status";
@@ -39,7 +38,12 @@ function App() {
     >
       <Router>
         <Header></Header>
+        <Loader></Loader>
+        <Alert></Alert>
         <Switch>
+          <Route path="/" exact>
+            <Login></Login>
+          </Route>
           <Route path={routes.login} exact>
             <Login></Login>
           </Route>
@@ -64,6 +68,9 @@ function App() {
               <ListFavorites></ListFavorites>
             </PrivateRoute>
           </Route>
+          <Route path={routes.security} exact>
+            <PrivateRoute></PrivateRoute>
+          </Route>
           <Route path={routes.logout} exact>
             <PrivateRoute>
               <Logout></Logout>
@@ -71,7 +78,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <Loader></Loader>
     </AppContext.Provider>
   );
 }

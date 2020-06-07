@@ -1,0 +1,18 @@
+GENERAL
+-Falta definir un tema de front
+
+FUNCIONALIDADES
+-Cambio de clave
+-Visualizar cronograma
+-Control de presupuesto
+
+REGISTRO
+-Validación reactiva de los campos requeridos
+-Falta un poco mas de estilo
+
+PREFERENCIAS
+La vista no es responsiva
+
+
+Salvatore.cefaratti@hotmail.com
+Sc123456

@@ -1,0 +1,42 @@
+/* The alert message box */
+.alert-error {
+  padding: 20px;
+  background-color: var(--error-color); /* Red */
+  color: var(--white-color);
+  margin-bottom: 15px;
+}
+
+.alert-warning {
+  padding: 20px;
+  background-color: var(--warning-color); /* orange */
+  color: var(--white-color);
+  margin-bottom: 15px;
+}
+
+.alert-success {
+  padding: 20px;
+  background-color: var(--success-color); /* Green */
+  color: var(--white-color);
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: var(--white-color);
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+.error-message-empty {
+  display: none;
+}

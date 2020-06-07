@@ -51,11 +51,11 @@ export const Login: React.FunctionComponent<{}> = () => {
       AuthMng.login(token);
 
       if (AuthMng.isAuthenticated()) {
-        updateApp({ user: "1", app: "0", msg: "Login exitoso" });
+        updateApp({ user: "1", app: "0", msg: "s|Login exitoso" });
       }
       history.replace(routes.settings);
     } else {
-      updateApp({ user: "0", app: "0", msg: "Error login" });
+      updateApp({ user: "0", app: "0", msg: "e|Error login" });
     }
   };
 
@@ -66,10 +66,10 @@ export const Login: React.FunctionComponent<{}> = () => {
     if (authorized === true) {
       AuthMng.login(receivedToken);
 
-      updateApp({ user: "1", app: "0", msg: "Login exitoso" });
+      updateApp({ user: "1", app: "0", msg: "s|Login exitoso" });
       history.replace(routes.settings);
     } else {
-      updateApp({ user: "0", app: "0", msg: "Error login" });
+      updateApp({ user: "0", app: "0", msg: "e|Error login" });
       AuthMng.logout();
     }
   };

@@ -96,14 +96,18 @@ export const Settings: React.FunctionComponent<{}> = () => {
       categories
     );
     setSettings(settings);
-    updateApp({ ...status, app: "1" });
+    updateApp({ ...status, app: "1", msg: "" });
     const response: serverResponse = await postSettings(settings);
 
-    if (response.data.status === "ok" || response.data.status === "error")
-      updateApp({ ...status, msg: response.data.message });
+    if (response.data.status === "ok") {
+      updateApp({ ...status, msg: "s|" + response.data.message });
+    } else {
+      updateApp({ ...status, msg: "w|" + response.data.message });
+    }
   };
 
   useEffect(() => {
+    updateApp({ ...status, msg: "" });
     if (status.user === "1") {
       handleCitiesPromise();
       handleSettingsPromise();
@@ -112,27 +116,8 @@ export const Settings: React.FunctionComponent<{}> = () => {
 
   return (
     <>
-      <h3>Settings</h3>
-      <div className={cx("container")}>
-        <div className={cx("box")}>
-          <TextInput
-            name={"budget"}
-            label={"Presupuesto"}
-            value={budget}
-            onChange={(value) => onHandleBudgetChange(value)}
-            className={cx("input")}
-          ></TextInput>
-        </div>
-        <div className={cx("box")}>
-          <TextInput
-            name={"tickets"}
-            label={"Tickets"}
-            value={tickets}
-            onChange={(value) => onHandleTicketsChange(value)}
-            className={cx("input")}
-          ></TextInput>
-        </div>
-        <div className={cx("box")}>
+      <div className={cx("box")}>
+        <div className={cx("item")}>
           <SelectInput
             className={cx("select")}
             currentValue={city}
@@ -144,7 +129,29 @@ export const Settings: React.FunctionComponent<{}> = () => {
             }}
           ></SelectInput>
         </div>
-        <div className={cx("box")}>
+      </div>
+      <div className={cx("wrapper", "box")}>
+        <div className={cx("item")}>
+          <TextInput
+            name={"budget"}
+            label={"Presupuesto"}
+            value={budget}
+            onChange={(value) => onHandleBudgetChange(value)}
+            className={cx("input")}
+          ></TextInput>
+        </div>
+        <div className={cx("item")}>
+          <TextInput
+            name={"tickets"}
+            label={"Tickets"}
+            value={tickets}
+            onChange={(value) => onHandleTicketsChange(value)}
+            className={cx("input")}
+          ></TextInput>
+        </div>
+      </div>
+      <div className={cx("box", "wrapper")}>
+        <div className={cx("item")}>
           <DateInput
             name={"startdate"}
             label={"Fecha Inicio"}
@@ -154,7 +161,8 @@ export const Settings: React.FunctionComponent<{}> = () => {
             }}
             className={cx("input")}
           ></DateInput>
-
+        </div>
+        <div className={cx("item")}>
           <DateInput
             name={"enddate"}
             label={"Fecha Fin"}
@@ -165,7 +173,9 @@ export const Settings: React.FunctionComponent<{}> = () => {
             className={cx("input")}
           ></DateInput>
         </div>
-        <div className={cx("box")}>
+      </div>
+      <div className={cx("wrapper", "box")}>
+        <div className={cx("item")}>
           <Checkbox
             name={"music"}
             label={"Música"}
@@ -173,20 +183,26 @@ export const Settings: React.FunctionComponent<{}> = () => {
             checked={categories.music}
             onChange={(value) => onHandleCheckboxChange(value, "music")}
           ></Checkbox>
+        </div>
+        <div className={cx("item")}>
           <Checkbox
             name={"arts"}
-            label={"Arte y Teatro"}
+            label={"Arte"}
             value={"arts"}
             checked={categories.arts}
             onChange={(value) => onHandleCheckboxChange(value, "art")}
           ></Checkbox>
+        </div>
+        <div className={cx("item")}>
           <Checkbox
             name={"sports"}
-            label={"Deportes"}
+            label={"Deporte"}
             value={"sports"}
             checked={categories.sports}
             onChange={(value) => onHandleCheckboxChange(value, "sports")}
           ></Checkbox>
+        </div>
+        <div className={cx("item")}>
           <Checkbox
             name={"other"}
             label={"Otro"}
@@ -195,11 +211,11 @@ export const Settings: React.FunctionComponent<{}> = () => {
             onChange={(value) => onHandleCheckboxChange(value, "other")}
           ></Checkbox>
         </div>
-        <div className={cx("row")}>
-          <Button onClick={() => updateSettings()} theme="primary">
-            Actualizar
-          </Button>
-        </div>
+      </div>
+      <div className={cx("box", "wrapper")}>
+        <Button onClick={() => updateSettings()} theme="primary">
+          Actualizar
+        </Button>
       </div>
     </>
   );

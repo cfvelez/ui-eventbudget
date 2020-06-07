@@ -2,9 +2,11 @@ import { httpClient } from "../http-client";
 import { EventInterface } from "../../features/app/domain/event/Event";
 import { paginationDto } from "./paginationDto";
 import { FavoriteInterface } from "../../features/app/domain/favorite/Favorite";
+import { serverResponse } from "../../features/app/domain/serverResponse";
 
 export const getEvents = async (page: number) => {
   const URL: string = `/events/all/${page}`;
+
   let events: Array<EventInterface> = [];
   let pagination: paginationDto = {
     number: 0,
@@ -13,13 +15,16 @@ export const getEvents = async (page: number) => {
     totalPages: 0,
   };
 
-  const response = await httpClient.get(URL);
-
+  const response = (await httpClient.get(URL)) as serverResponse;
+  let server = {
+    status: response.data.status,
+    message: response.data.message,
+  };
   if (response.data.status === "ok") {
     events = response.data.data.events as Array<EventInterface>;
     pagination = response.data.data.page as paginationDto;
   }
-  return { events, pagination };
+  return { server, events, pagination };
 };
 
 export const addEvent = async (eventId: string) => {
