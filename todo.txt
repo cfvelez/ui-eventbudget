@@ -10,6 +10,9 @@ REGISTRO
 -Validación reactiva de los campos requeridos
 -Falta un poco mas de estilo
 
+FAVORITOS
+- Organizar hora de favoritos
+
 PREFERENCIAS
 La vista no es responsiva
 

@@ -8,6 +8,6 @@ export interface EventInterface {
   image: string;
   link: string;
   category: categoryDto;
-  dates: dateDto;
+  date: dateDto;
   location: locationDto;
 }

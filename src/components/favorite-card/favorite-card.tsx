@@ -38,23 +38,49 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
     }
   };
 
+  const handleDetails = (url: string) => {
+    window.open(url);
+  };
+
   const listFavorites = (list: Array<FavoriteInterface>) => {
     const card = list.map((favorite: FavoriteInterface) => {
+      console.log(favorite);
       return (
         <div
           key={favorite.eventId}
           id={favorite.eventId}
-          className={cx("card")}
+          className={cx("grid-item")}
         >
-          {favorite.eventId}-{favorite.name}
-          <Button onClick={() => handleAddEventBtn(favorite.eventId)}>
-            Borrar
-          </Button>
+          <div className={cx("card")}>
+            <img
+              src={favorite.image}
+              alt={favorite.name}
+              className={cx("card-img")}
+            />
+            <h3>{favorite.name}</h3>
+            <p>{favorite.location}</p>
+            <p>{favorite.date.substring(10)}</p>
+            <p>
+              <Button
+                theme={"secondary"}
+                onClick={() => handleAddEventBtn(favorite.eventId)}
+              >
+                Eliminar
+              </Button>
+              <Button onClick={() => handleDetails(favorite.url)}>
+                Comprar
+              </Button>
+            </p>
+          </div>
         </div>
       );
     });
 
     return card;
   };
-  return <>{listFavorites(items)}</>;
+  return (
+    <>
+      <div className={cx("grid-container")}>{listFavorites(items)}</div>
+    </>
+  );
 };

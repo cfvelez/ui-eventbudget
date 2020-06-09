@@ -6,6 +6,7 @@ import { EventInterface } from "../../features/app/domain/event/Event";
 import { addEvent } from "../../infrastructure/events/events";
 import { Button } from "../button/button";
 import { AppContext } from "../../app-context";
+import dateInputStories from "../form/date-input/date-input.stories";
 
 const cx = bind(styles);
 
@@ -35,11 +36,24 @@ export const EventCard: React.FunctionComponent<Props> = ({ items }) => {
   const listEvents = (list: Array<EventInterface>) => {
     const card = list.map((event: EventInterface) => {
       return (
-        <div key={event.id} id={event.id} className={cx("card")}>
-          {event.id}-{event.name}
-          <Button onClick={() => handleAddEventBtn(event.id, event.name)}>
-            Agregar
-          </Button>
+        <div key={event.id} id={event.id} className={cx("grid-item")}>
+          <div className={cx("card")}>
+            <img
+              src={event.image}
+              alt={event.category.name}
+              className={cx("card-img")}
+            />
+            <h3>{event.name}</h3>
+            <p>{event.location.name}</p>
+            <p>
+              {event.date.localDate}-{event.date.localTime}
+            </p>
+            <p>
+              <Button onClick={() => handleAddEventBtn(event.id, event.name)}>
+                Agregar
+              </Button>
+            </p>
+          </div>
         </div>
       );
     });
@@ -47,5 +61,9 @@ export const EventCard: React.FunctionComponent<Props> = ({ items }) => {
     return card;
   };
 
-  return <>{listEvents(items)}</>;
+  return (
+    <>
+      <div className={cx("grid-container")}>{listEvents(items)}</div>
+    </>
+  );
 };
