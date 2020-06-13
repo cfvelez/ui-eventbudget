@@ -44,7 +44,6 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
 
   const listFavorites = (list: Array<FavoriteInterface>) => {
     const card = list.map((favorite: FavoriteInterface) => {
-      console.log(favorite);
       return (
         <div
           key={favorite.eventId}
@@ -59,7 +58,9 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
             />
             <h3>{favorite.name}</h3>
             <p>{favorite.location}</p>
-            <p>{favorite.date.substring(10)}</p>
+            <p>
+              {favorite.date.substr(1, 10)}-{favorite.time}
+            </p>
             <p>
               <Button
                 theme={"secondary"}

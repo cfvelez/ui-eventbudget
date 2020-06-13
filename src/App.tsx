@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Signup } from "./features/app/ui/signup/signup";
 import { Logout } from "./features/app/ui/logout/logout";
 import { Login } from "./features/app/ui/login/login";
+import { Security } from "./features/app/ui/security/security";
 import { Alert } from "./components/alert/alert";
 import { Loader } from "./components/loader/loader";
 import { Settings } from "./features/app/ui/settings/settings";
@@ -69,7 +70,9 @@ function App() {
             </PrivateRoute>
           </Route>
           <Route path={routes.security} exact>
-            <PrivateRoute></PrivateRoute>
+            <PrivateRoute>
+              <Security></Security>
+            </PrivateRoute>
           </Route>
           <Route path={routes.logout} exact>
             <PrivateRoute>

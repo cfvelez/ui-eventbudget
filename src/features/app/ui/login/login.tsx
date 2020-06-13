@@ -55,7 +55,7 @@ export const Login: React.FunctionComponent<{}> = () => {
       }
       history.replace(routes.settings);
     } else {
-      updateApp({ user: "0", app: "0", msg: "e|Error login" });
+      updateApp({ user: "0", app: "0", msg: "e|Usuario / Clave incorrectos" });
     }
   };
 

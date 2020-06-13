@@ -21,3 +21,7 @@
   display: table;
   clear: both;
 }
+
+.card button {
+  cursor: "pointer";
+}
