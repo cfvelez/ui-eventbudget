@@ -43,7 +43,7 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
   };
 
   const getTime = (time: string) => {
-    const hour = parseInt(time.substr(0, 2));
+    const hour = parseInt(time.substring(0, 2));
 
     if (hour > 0 && hour <= 12) {
       return "AM";
