@@ -58,44 +58,40 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
 
   const listFavorites = (list: Array<FavoriteInterface>) => {
     if (list !== undefined && list.length > 0) {
-      console.log(list);
       const card = list.map((favorite: FavoriteInterface) => {
-        console.log(favorite.date, favorite.time);
-
-        if (favorite !== undefined) {
-          return (
-            <div
-              key={favorite.eventId}
-              id={favorite.eventId}
-              className={cx("grid-item")}
-            >
-              <div className={cx("card")}>
-                <img
-                  src={favorite.image}
-                  alt={favorite.name}
-                  className={cx("card-img")}
-                />
-                <h3>{favorite.name}</h3>
-                <p>{favorite.location}</p>
-                <p>
-                  {favorite.date.substring(0, 10)}:{favorite.time}:
-                  {getTime(favorite.time)}
-                </p>
-                <p>
-                  <Button
-                    theme={"secondary"}
-                    onClick={() => handleAddEventBtn(favorite.eventId)}
-                  >
-                    Eliminar
-                  </Button>
-                  <Button onClick={() => handleDetails(favorite.url)}>
-                    Comprar
-                  </Button>
-                </p>
-              </div>
+        const timeEvent = favorite.time !== undefined ? favorite.time : "";
+        return (
+          <div
+            key={favorite.eventId}
+            id={favorite.eventId}
+            className={cx("grid-item")}
+          >
+            <div className={cx("card")}>
+              <img
+                src={favorite.image}
+                alt={favorite.name}
+                className={cx("card-img")}
+              />
+              <h3>{favorite.name}</h3>
+              <p>{favorite.location}</p>
+              <p>
+                {favorite.date.substring(0, 10)}:{timeEvent}:
+                {getTime(timeEvent)}
+              </p>
+              <p>
+                <Button
+                  theme={"secondary"}
+                  onClick={() => handleAddEventBtn(favorite.eventId)}
+                >
+                  Eliminar
+                </Button>
+                <Button onClick={() => handleDetails(favorite.url)}>
+                  Comprar
+                </Button>
+              </p>
             </div>
-          );
-        }
+          </div>
+        );
       });
       return card;
     } else {
