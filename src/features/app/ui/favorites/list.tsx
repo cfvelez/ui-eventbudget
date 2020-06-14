@@ -8,6 +8,7 @@ export const ListFavorites: React.FunctionComponent<{}> = () => {
   const favoriteSetup: Array<FavoriteInterface> = [];
   const [favorites, setFavorites] = useState(favoriteSetup);
   const { status, updateApp } = useContext(AppContext);
+  const [fav] = useState("");
 
   const fetchFavorites = async () => {
     updateApp({ ...status, app: "1" });
@@ -26,7 +27,7 @@ export const ListFavorites: React.FunctionComponent<{}> = () => {
 
   useEffect(() => {
     fetchFavorites();
-  }, []);
+  }, [fav]);
 
   return (
     <>
