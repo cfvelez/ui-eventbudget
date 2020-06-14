@@ -78,8 +78,7 @@ export const Login: React.FunctionComponent<{}> = () => {
     const receivedToken = gtoken !== undefined && gtoken !== null ? gtoken : "";
     AuthMng.logout();
     if (receivedToken !== "") {
-      console.log(receivedToken);
-      //validateToken(receivedToken);
+      validateToken(receivedToken);
     }
   }, []);
 
