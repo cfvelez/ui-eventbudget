@@ -57,7 +57,7 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
   };
 
   const listFavorites = (list: Array<FavoriteInterface>) => {
-    if (list !== undefined) {
+    if (list !== undefined && list.length > 0) {
       console.log(list);
       const card = list.map((favorite: FavoriteInterface) => {
         return (
