@@ -43,17 +43,22 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
   };
 
   const getTime = (time: string) => {
-    const hour = parseInt(time.substring(0, 2));
+    if (time != "") {
+      const hour = parseInt(time.substring(0, 2));
 
-    if (hour > 0 && hour <= 12) {
-      return "AM";
-    } else {
-      return "PM";
+      if (hour > 0 && hour <= 12) {
+        return "AM";
+      } else {
+        return "PM";
+      }
     }
+
+    return "";
   };
 
   const listFavorites = (list: Array<FavoriteInterface>) => {
     if (list !== undefined) {
+      console.log(list);
       const card = list.map((favorite: FavoriteInterface) => {
         return (
           <div
@@ -70,7 +75,7 @@ export const FavoriteCard: React.FunctionComponent<Props> = ({ items }) => {
               <h3>{favorite.name}</h3>
               <p>{favorite.location}</p>
               <p>
-                {favorite.date.substr(0, 10)}:{favorite.time}:
+                {favorite.date.substring(0, 10)}:{favorite.time}:
                 {getTime(favorite.time)}
               </p>
               <p>
