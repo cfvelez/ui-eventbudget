@@ -3,6 +3,7 @@ import { EventInterface } from "../../features/app/domain/event/Event";
 import { paginationDto } from "./paginationDto";
 import { FavoriteInterface } from "../../features/app/domain/favorite/Favorite";
 import { serverResponse } from "../../features/app/domain/serverResponse";
+import { FullCalendarEventInterface } from "../../features/app/domain/fullCalendarEvent/FullCalendarEvent";
 
 export const getEvents = async (page: number) => {
   const URL: string = `/events/all/${page}`;
@@ -50,4 +51,38 @@ export const getFavorites = async () => {
     favorites = response.data.data as Array<FavoriteInterface>;
   }
   return favorites;
+};
+
+const getTime = (time: string) => {
+  if (time !== "" && time !== undefined) {
+    console.log(time);
+    const hour = parseInt(time.substring(0, 2));
+
+    if (hour > 0 && hour <= 12) {
+      return parseInt(time.substring(0, 5)) + "am";
+    } else {
+      return parseInt(time.substring(0, 5)) + "pm";
+    }
+  }
+
+  return "";
+};
+
+export const getCalendarEvents = async () => {
+  const URL: string = `/events/favorites/`;
+  let events: Array<FavoriteInterface> = [];
+
+  const response = await httpClient.get(URL);
+  if (response.data.status === "ok") {
+    events = response.data.data as Array<FavoriteInterface>;
+  }
+  return events.map((event) => {
+    let customTitle = getTime(event.time) + "<br>" + event.name;
+    let calendarEvent: FullCalendarEventInterface = {
+      title: customTitle,
+      start: event.date.substring(0, 10),
+      url: event.url,
+    };
+    return calendarEvent;
+  });
 };

@@ -6,4 +6,5 @@ export const routes = {
   favorites: "/favorites",
   security: "/security",
   settings: "/settings",
+  calendar: "/calendar",
 };

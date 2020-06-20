@@ -35,6 +35,13 @@ export const Header: React.FC = () => {
         )}
         {status.user === "1" && (
           <li className={cx("nav-li")}>
+            <NavLink to={routes.calendar} activeClassName={cx("active")}>
+              Calendario
+            </NavLink>
+          </li>
+        )}
+        {status.user === "1" && (
+          <li className={cx("nav-li")}>
             <NavLink to={routes.security} activeClassName={cx("active")}>
               Seguridad
             </NavLink>

@@ -10,6 +10,7 @@ import { Settings } from "./features/app/ui/settings/settings";
 import { ListEvents } from "./features/app/ui/events/list/list";
 import { ListFavorites } from "./features/app/ui/favorites/list";
 import { Header } from "./components/header/header";
+import { Calendar } from "./features/app/ui/calendar/calendar";
 import { routes } from "./routes/index";
 import { PrivateRoute } from "./routes/private-route";
 import { Status } from "./features/app/domain/status";
@@ -18,8 +19,6 @@ import { AppContext } from "./app-context";
 //import logo from "./logo.svg";
 
 import "./App.css";
-
-//import { Page } from "./components/page/page";
 
 function App() {
   var DefaultState: Status = { user: "0", app: "0", msg: "" };
@@ -67,6 +66,11 @@ function App() {
           <Route path={routes.favorites} exact>
             <PrivateRoute>
               <ListFavorites></ListFavorites>
+            </PrivateRoute>
+          </Route>
+          <Route path={routes.calendar} exact>
+            <PrivateRoute>
+              <Calendar></Calendar>
             </PrivateRoute>
           </Route>
           <Route path={routes.security} exact>
