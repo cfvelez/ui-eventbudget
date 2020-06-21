@@ -107,13 +107,11 @@ export const Login: React.FunctionComponent<{}> = () => {
         <Button onClick={login} theme="primary">
           Entrar
         </Button>
-
-        <Button onClick={google} theme="primary">
-          Ingresar con Google
-        </Button>
-
         <Button onClick={sigUp} theme="primary">
           Registrarse
+        </Button>
+        <Button onClick={google} theme="google">
+          Ingresar con Google
         </Button>
       </div>
     </>

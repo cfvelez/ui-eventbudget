@@ -5,7 +5,7 @@ import styles from "./button.module.css";
 const cx = bind(styles);
 
 interface Props extends React.HTMLProps<HTMLButtonElement> {
-  theme?: "primary" | "secondary";
+  theme?: "primary" | "secondary" | "google";
   submit?: boolean;
 }
 

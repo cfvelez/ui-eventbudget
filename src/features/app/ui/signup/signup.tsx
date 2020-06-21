@@ -155,7 +155,7 @@ export const Signup: React.FunctionComponent<{}> = () => {
       </div>
       <div className={cx("row")}>
         {success && (
-          <Button onClick={cancel} theme="primary">
+          <Button onClick={cancel} theme="google">
             Acceder
           </Button>
         )}
