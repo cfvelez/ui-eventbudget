@@ -28,7 +28,6 @@ export const MyFullCalendar: React.FunctionComponent<Props> = ({
         }}
         eventClick={(api) => {
           api.jsEvent.preventDefault();
-          console.log();
           if (api.event.url) {
             window.open(api.event.url);
           }

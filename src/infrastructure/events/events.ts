@@ -55,7 +55,6 @@ export const getFavorites = async () => {
 
 const getTime = (time: string) => {
   if (time !== "" && time !== undefined) {
-    console.log(time);
     const hour = parseInt(time.substring(0, 2));
 
     if (hour > 0 && hour <= 12) {
