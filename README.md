@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Desarrollo proyecto final - máster Desarrollo Web FullStack con el entorno MERN.
+*Desarrollo proyecto final - máster Desarrollo Web FullStack con el entorno MERN.*
 
 Código fuente en Typescript - React para la parte del Frontend se implementó:
 
