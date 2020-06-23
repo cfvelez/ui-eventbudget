@@ -1,8 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 *Desarrollo proyecto final - máster Desarrollo Web FullStack con el entorno MERN.*
 
-Código fuente en Typescript - React para la parte del Frontend se implementó:
+Código fuente en Typescript - React donde se se implementó:
 
 - Seguridad Login 
 - Registro
@@ -15,3 +13,5 @@ Código fuente en Typescript - React para la parte del Frontend se implementó:
 - Listar eventos favoritos
 - Calendario de eventos de favoritos (Integración con FullCalendar)
 - Cierre de sesión
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
