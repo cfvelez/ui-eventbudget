@@ -1,4 +1,4 @@
-*Desarrollo proyecto final - máster Desarrollo Web FullStack con el entorno MERN.*
+**Desarrollo proyecto final - máster Desarrollo Web FullStack con el entorno MERN.**
 
 Código fuente en Typescript - React donde se se implementó:
 
